@@ -28,11 +28,21 @@ export default {
 //                  commit('showMenuOk', ndata)
 //              }
 //          })
-			var ndata = [{
-			"title": "用户管理",
-			"path": "/userMage",
-			"icon": "fa fa-user"
+			var ndata = [
+			{
+				"title": "用户管理",
+				"path": "/userMs",
+				"icon": "fa fa-user"
 			}, {
+				"title": "北京通手机卡",
+				"path": "/phoneCard",
+				"icon": "fa fa-user"
+			}, {
+				"title": "咨询管理",
+				"path": "/newsMs",
+				"icon": "fa fa-user"
+			}, 
+			{
 			"title": "业务管理",
 			"path": "businessMage",
 			"icon": "fa fa-database",
@@ -95,8 +105,11 @@ export default {
 
 			
 			var brDic = new Array();
+				brDic["userMs"] ="用户管理",
+				brDic["phoneCard"] ="北京通手机卡",
+				brDic["newsMs"] ="咨询管理",
 				
-	        	brDic["userMage"] ="用户管理",
+//	        	brDic["userMage"] ="用户管理",
 	        	brDic["businessMage"] ="业务管理",
 	        	brDic["govBusiness"] ="政府业务",
 	        	brDic["unitBusiness"] ="理事单位业务",

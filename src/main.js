@@ -31,13 +31,15 @@ import Table from './models/table'
 import Staff from './models/staff'
 
 //项目文件
-import UserMage from './models/userMage'
+import UserMs from './models/userMs'
+import PhoneCard from './models/phoneCard'
 
 
 Vue.config.productionTip = false
 /*  eslint-disable no-new */
 Vue.use(Vuex)
 Vue.use(ElementUI)
+
 const store = new Vuex.Store({
   modules: {
     login: Login,
@@ -46,7 +48,8 @@ const store = new Vuex.Store({
     layout: Layout,
     component:Table,
     staff:Staff,
-    userMage:UserMage,
+    userMs:UserMs,
+    phoneCard:PhoneCard,
   }
 })
  

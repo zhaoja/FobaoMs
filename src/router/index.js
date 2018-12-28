@@ -14,7 +14,6 @@ import Limit from '@/containers/staff/limit'
 import Form from '@/components/component/form'
 import Table from '@/components/component/table'
         
-import UserMage from '@/containers/userMage/UserMage'
 import McardApply from '@/containers/businessMage/McardApply'
 import McardSearch from '@/containers/businessMage/McardSearch'
 import AccountSearch from '@/containers/businessMage/AccountSearch'
@@ -22,6 +21,11 @@ import CardFind from '@/containers/businessMage/CardFind'
 import Function from '@/containers/businessMage/Function'
 import F0F from '@/components/FOF'
 
+import UserMs from '@/containers/userMs/userMs'
+import UserMsDetails from '@/containers/userMs/userMsDetails'
+import PhoneCard from '@/containers/phoneCard/phoneCard'
+import PhoneCardDetails from '@/containers/phoneCard/phoneCardDetails'
+ 
 Vue.use(Router)
 
 export default new Router({
@@ -29,7 +33,11 @@ export default new Router({
 	    routes:[
             {path:"/",component:Layout,children:[
             	
-                {path:"/userMage",name:"用户管理",component:UserMage},
+                {path:"/userMs",name:"用户管理",component:UserMs},
+                {path:"/userMsDetails",name:"详情",component:UserMsDetails},
+                {path:"/phoneCard",name:"北京通手机卡",component:PhoneCard},
+                {path:"/PhoneCardDetails",name:"详情",component:PhoneCardDetails},
+                
 //              {path:"/businessMage",name:"业务管理",component:busManage},
 //              {path:"/govBusiness",name:"政府业务",component:govBusiness},
                 {path:"/businessMage/govBusiness/mcardApply",name:"制卡申请",component:McardApply},

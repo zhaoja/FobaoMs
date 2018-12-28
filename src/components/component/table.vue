@@ -5,14 +5,22 @@
 -->
 <template>
 	<div>
-		<!--<h3>{{tableData.tTitle}}</h3>-->
-		<div class="searchGroup">
-			<span class="input" v-for="sea in tableData.searchGroup">
+		<!--<h3>{{tableData}}</h3>-->
+		<div class="searchGroup"  v-if="tableData.searchGroup">
+			<span class="input" v-for="sea in tableData.searchGroup.searchInput" v-if="tableData.searchGroup.searchInput">
 				{{sea.cname}} ： 
 				<el-input
-				  	placeholder="请输入..."  v-model="input10" @change="seachTable" style="width: 200px;">
+				  	placeholder="请输入..."  v-model="input" @change="seachTable" style="width: 200px;">
 				  	<i class="el-icon-edit el-input__icon"  slot="suffix"></i>
 				</el-input>
+			</span>
+			<span v-for="sea in tableData.searchGroup.searchSelect"  v-if="tableData.searchGroup.searchSelect">
+				<select name="" >
+					<option value="" ></option>
+				</select>
+			</span>
+			<span v-for="sea in tableData.searchGroup.searchBtn"  v-if="tableData.searchGroup.searchBtn">
+				<el-button type="primary" @click="onSubmit()">{{sea.name}}</el-button>
 			</span>
 		</div>
 
@@ -23,14 +31,15 @@
 	        <el-table-column
 		      fixed="right"
 		      label="操作"
-		      width="120">
+		      width="250" v-if="tableData.showOpration">
 		      <template slot-scope="scope">
+		      	<el-switch style="float: left;margin-right: 10px; margin-top: 7px;" v-for="eb in tableData.editSwitch" v-model="scope.row.freeze" @change="change(scope.row,eb.act)" :active-text="eb.name1" :inactive-text="eb.name2"></el-switch>
 		        <el-button v-for="eb in tableData.editBtn" @click="handClick(scope.row,eb.act)" type="text" size="small">{{eb.name}}</el-button>
 		      </template>
 		    </el-table-column>
 	    </el-table>
- 
 		 <el-pagination
+		 	v-if="tableData.pagination"
 		  background
 	      @size-change="handleSizeChange" 
 	      @current-change="handleCurrentChange"
@@ -52,7 +61,8 @@
       	},
        	data(){
        		return{
-//     			input10:"" ,
+       			input:"" ,
+				valueChose:true,
        		 	currentPage:1
        		}
        	},
@@ -61,13 +71,26 @@
        			console.log(value)
        		},
        		handClick(a,b){
-       			console.log(a,b)
+				var params ={
+					id : a.idcard
+				}
+				console.log(`${this.$route.path}Details`)
+       			this.$router.push({path:`${this.$route.path}Details`,query:params})
+//				this.$store.dispatch('getUserListDetails',params)
        		},
    		 	handleSizeChange(val) {
 		        console.log(`每页 ${val} 条`);
 	      	},
 	      	handleCurrentChange(val) {
 		        console.log(`当前页: ${val}`);
+	      	},
+	      	change(a,b){
+	      		console.log(this.valueChose)
+	      		console.log(a,b)
+//	      		this.valueChose = false
+	      	},
+	      	onSubmit(){
+	      		
 	      	}
        	}
     }
@@ -123,5 +146,7 @@
 	float: left;
     margin-top: -30px;
 }
-
+.el-switch span{
+	font-size: 13px !important;
+}
 </style>

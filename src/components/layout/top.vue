@@ -12,8 +12,13 @@
 			<el-menu-item index="3">
 				<a href="#" target="_blank">其他选项</a>
 			</el-menu-item>-->
-
+			<div class="logout">
+				<a href="#"  @click="logout">
+					退出登录
+				</a>
+			</div>
 			<el-menu-item index="4" class="pull-right user">
+				 
 				<el-dropdown trigger="click">
 					<span class="el-dropdown-link">
 					    <img class="nav-user-photo" src="../../imgs/user.jpg" alt="Jason's Photo">
@@ -40,15 +45,12 @@
 
 							<li class="divider"></li>
 
-							<li >
-								<a href="#"  @click="logout">
-									<i class="el-icon-setting"></i> 退出
-								</a>
-							</li>
+							
 						</ul>
 					</el-dropdown-menu>
 				</el-dropdown>
 			</el-menu-item>
+			
 			<!--<el-menu-item index="5" class="pull-right">
 				<el-badge :value="12" class="item">
 					<i class="el-icon-bell"></i>
@@ -139,4 +141,14 @@
 	.top .user{
 		background: #C0C0C0 !important;
 	}
+	.logout{
+		float: right;
+		height: 100%;
+		line-height: 60px;
+		padding: 0 20px;
+	}
+	.logout a{
+		color: #4BA8FE;
+	}
+	 
 </style>

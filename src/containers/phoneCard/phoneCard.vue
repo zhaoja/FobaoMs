@@ -1,6 +1,7 @@
 <template>
 	<div id="">
-	 	<UserTable :tableData="userlist"/></el-col>
+		
+	 	<UserTable :tableData="cardlist"/></el-col>
 	</div>
 		 
 </template>
@@ -15,12 +16,13 @@
 	      },
         computed: {
             ...mapState({
-                userlist: state => state.userMage.userdata
+                cardlist: state => state.phoneCard.carddata
               })
         },
         created() {
             this.$store.dispatch('getUserList');
         }, 
+         
     }
 </script>
 
