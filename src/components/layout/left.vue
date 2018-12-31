@@ -89,9 +89,9 @@
 
 	}
 </script>
-<style scoped="scoped">
+<style scoped="scoped" lang = "less">
 	.el-menu {
-		border-right: none
+		border-right: none;
 	}
  	.logo {
 		float: left;
@@ -119,9 +119,10 @@
 		/*max-width: 260px;*/
 		width: 16.66667% !important;
 		background: #172951;
-	}
-	.sidebar i{
-		margin-right: 10px;
+
+		i {
+			margin-right: 10px;
+		}
 	}
  
 	.sidebar .is-active{
