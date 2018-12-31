@@ -75,11 +75,7 @@ export default {
 //		}
 	},
 	actions: {
-		getUserList({
-			commit,
-			state
-		}, items) {
-
+		getUserList({commit,state}, items) {
 			var data = {};
 			data.tTitle = "组织管理";
 			data.showOpration = true;

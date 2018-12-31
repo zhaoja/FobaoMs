@@ -1,7 +1,7 @@
 <template>
 	<div id="">
 		
-	 	<UserTable :tableData="cardlist"/></el-col>
+	 	<UserTable :tableData="cardlist"/>
 	</div>
 		 
 </template>
