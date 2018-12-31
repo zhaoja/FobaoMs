@@ -119,6 +119,10 @@
 		/*max-width: 260px;*/
 		width: 16.66667% !important;
 		background: #172951;
+		float: left;
+		position: static;
+		padding-left: 0;
+		padding-right: 0;
 
 		i {
 			margin-right: 10px;
@@ -136,6 +140,9 @@
 	}
 	
 	.sidebar:before {
+		box-sizing: border-box;
+		width: inherit;
+    	position: fixed;
 		content: "";
 		display: block;
 		top: 0px;
