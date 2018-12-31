@@ -14,9 +14,9 @@ import 'bootstrap/dist/js/bootstrap.min'
 import 'font-awesome/css/font-awesome.min.css'
 
 import '../static/fullcalendar/css/fullcalendar.min.css'
-import '../static/fullcalendar/css/ace.css'
+// import '../static/fullcalendar/css/ace.css'
 
-import 'font-awesome/css/font-awesome.min.css'
+// import 'font-awesome/css/font-awesome.min.css'
  
 import App from './App'
 import router from './router'

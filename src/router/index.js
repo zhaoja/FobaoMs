@@ -24,6 +24,7 @@ import F0F from '@/components/FOF'
 import UserMs from '@/containers/userMs/userMs'
 import UserMsDetails from '@/containers/userMs/userMsDetails'
 import PhoneCard from '@/containers/phoneCard/phoneCard'
+import NewPhoneCard from '@/containers/phoneCard/NewPhoneCard'
 import PhoneCardDetails from '@/containers/phoneCard/phoneCardDetails'
  
 Vue.use(Router)
@@ -37,14 +38,15 @@ export default new Router({
                 {path:"/userMsDetails",name:"详情",component:UserMsDetails},
                 {path:"/phoneCard",name:"北京通手机卡",component:PhoneCard},
                 {path:"/PhoneCardDetails",name:"详情",component:PhoneCardDetails},
+                {path: '/phoneCardNew', name: '北京通手机卡', component: NewPhoneCard},
                 
 //              {path:"/businessMage",name:"业务管理",component:busManage},
 //              {path:"/govBusiness",name:"政府业务",component:govBusiness},
-                {path:"/businessMage/govBusiness/mcardApply",name:"制卡申请",component:McardApply},
-                {path:"/businessMage/govBusiness/mcardSearch",name:"制卡查询",component:McardSearch},
-                {path:"/businessMage/govBusiness/accountSearch",name:"账户查询",component:AccountSearch},
-                {path:"/businessMage/govBusiness/cardFind",name:"卡片挂失",component:CardFind},
-                {path:"/businessMage/govBusiness/function",name:"功能介绍",component:Function},
+                // {path:"/businessMage/govBusiness/mcardApply",name:"制卡申请",component:McardApply},
+                // {path:"/businessMage/govBusiness/mcardSearch",name:"制卡查询",component:McardSearch},
+                // {path:"/businessMage/govBusiness/accountSearch",name:"账户查询",component:AccountSearch},
+                // {path:"/businessMage/govBusiness/cardFind",name:"卡片挂失",component:CardFind},
+                // {path:"/businessMage/govBusiness/function",name:"功能介绍",component:Function},
 //              {path:"/unitBusiness",name:"理事单位业务",component:unitBusiness},
                 {path:"*",name:"404",component:F0F},
                 
