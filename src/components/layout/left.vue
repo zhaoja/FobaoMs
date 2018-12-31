@@ -90,6 +90,9 @@
 	}
 </script>
 <style scoped="scoped">
+	.el-menu {
+		border-right: none
+	}
  	.logo {
 		float: left;
 		height: 90px;
@@ -115,7 +118,6 @@
 	.sidebar {
 		/*max-width: 260px;*/
 		width: 16.66667% !important;
-		height: 760px;
 		background: #172951;
 	}
 	.sidebar i{
@@ -143,7 +145,7 @@
 		border-color: inherit;
 		border-width: inherit;
 		box-shadow: 2px 0px 19px #ccc;
-		background: #fff;
+		background: #172951;
 	}
 	
 	.sidebar .el-submenu__title li {
