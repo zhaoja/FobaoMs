@@ -51,7 +51,7 @@
 		<!--搜索组件-->
 		<!--table组件-->
 	    <el-table  :data="seachTableDate.tableGroup.tData" style="width: 100%;">
-	        <el-table-column v-for="th in seachTableDate.tableGroup.tHeadData" :key = "th.prop" :prop = "th.prop" :label = "th.name" :width = "th.width">
+	        <el-table-column v-for = "th in seachTableDate.tableGroup.tHeadData" :key = "th.prop" :prop = "th.prop" :label = "th.name" :width = "th.width">
 	        </el-table-column>
 	        <el-table-column
 		      :fixed = "seachTableDate.tableGroup.Opration.fixed ? seachTableDate.tableGroup.Opration.fixed : 'right'"
@@ -69,7 +69,7 @@
 		  background
 	      @size-change = "handleSizeChange" 
 	      @current-change = "handleCurrentChange"
-	      :current-page = "seachTableDate.pagination.currentPage"
+	      :current-page = "currentPage"
 	      :page-sizes = "[10, 20, 50, 100]"
 	      :page-size = "seachTableDate.pagination.pageSize ? seachTableDate.pagination.pageSize : 10"
 	      layout = "total, sizes, prev, pager, next, jumper"
@@ -84,147 +84,9 @@
 	import _ from 'lodash';
     export default {
        	props:{
-			tableData: Object,
 			seachTableDate: {
 				type: Object,
-				// required: true,
-				default: () =>  {
-					return {
-						searchGroup: {
-							rowNum: 3,
-							labelWidth: '120px',
-							items: [
-								{	
-									key: 'name',
-									name: '姓名',
-									type: 'input',
-									value: '123',
-									labelWidth: '80px',
-									placeholder: '请输入...'
-								},
-								{	
-									key: 'selectType',
-									name: '选择框',
-									type: 'select',
-									value: '',
-									// clearable: false,  // 是否可以清空
-									// disabled: false,  // 是否可选
-									options: [{
-										value: '选项1',
-          								label: '黄金糕'
-									},{
-										value: '选项2',
-										label: '黄金糕',
-										disabled: true
-									}],
-									labelWidth: '80px',
-									// placeholder: ''
-								},
-								{	
-									key: 'name3',
-									name: '姓名',
-									type: 'input',
-									value: '123',
-									labelWidth: '80px',
-									placeholder: '请输入...'
-								},
-								{	
-									key: 'name2',
-									name: '姓名',
-									type: 'dataPick',
-									value: '',
-									labelWidth: '80px',
-									// valueFormat: 'yyyy-MM-dd',  // 设置获取的时间格式 默认就是 yyyy-MM-dd
-									placeholder: ''
-								},
-								{	
-									key: 'name22',
-									name: '时间',
-									type: 'dataPick',
-									dataPickType: 'daterange',  // 时间段选择
-									// valueFormat: 'yyyy-MM-dd',
-									value: '',
-									labelWidth: '80px',
-									placeholder: ''
-								},
-							]
-						},
-						tableGroup: {
-							keyName: 'id',
-							tHeadData: [
-								{prop: "name", name:'姓名', width: "150"},
-								{prop: "phone", name:'身份证号', width: "150"},
-								{prop: "idcard", name:'联系电话'},
-								{prop: "state1", name:'收件地址'},
-								{prop: "state2", name:'购买数量'},
-							],
-							tData: [{
-								id: '32141',
-								name: '王军',
-								phone:'15010971578',
-								idcard:'130221167008273849',
-								state1:'2011-05-05',
-								state2:'2011-05-05',
-								freeze:false
-							}, {
-								id: '321411',
-								name: '王军',
-								phone:'15010971578',
-								idcard:'130221167008273849',
-								state1:'2011-05-05',
-								state2:'2011-05-05' ,
-								freeze:true
-							}, {
-								id: '321412',
-								name: '王军',
-								phone:'15010971578',
-								idcard:'130221167008273849',
-								state1:'2011-05-05',
-								state2:'2011-05-05' ,
-								freeze:false 
-							}, {
-								id: '321413',
-								name: '王军',
-								phone:'15010971578',
-								idcard:'130221167008273849',
-								state1:'审核中',
-								state2:'待制卡'  ,
-								freeze:true 
-							}, {
-								id: '321414',
-								name: '王军',
-								phone:'15010971578',
-								idcard:'130221167008273849',
-								state1:'审核中',
-								state2:'待制卡' ,
-								freeze:true  
-							}],
-							Opration: {  // 可选 没有的话 不显示操作列表
-								oprationName: '操作中', // 可选  默认叫操作
-								fixed: 'right',  // 可选 默认是 right
-								width: '200',  // 可选 默认 自适应
-								actions: [{
-									key: 'detail', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
-									name: '详情',  // 操作按钮名字
-									size: 'small', // 可选 用于按钮大小
-									type: 'button',  // 可选 按钮类型
-								},
-								{
-									key: 'edit', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
-									name: '编辑',  // 操作按钮名字
-									size: 'small', // 可选 用于按钮大小
-									type: 'text',  // 可选 按钮类型
-								}
-								]
-							}
-						},
-						pagination: {
-							total: 100,  // type = number
-							currentPage: 1,  // type = number 当前第几页 
-							pageSize: 10
-						}
-					}
-				}
+				required: true
 			}
 		},   //props以数组的形式定义属性
 		mounted() {
@@ -265,6 +127,9 @@
 			 */
 			handleSearch() {
 				this.$emit('onSearch', this.searchData);
+				if (this.seachTableDate.pagination.currentPage !== this.currentPage) {
+					this.currentPage = this.seachTableDate.pagination.currentPage
+				}
 			},
 			/**
 			 * @description 点击查询 清空数据 并向触发父组件 onClear方法
