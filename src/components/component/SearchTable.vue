@@ -43,8 +43,9 @@
 			</div>
 			<div class = "serach-btn">
 				<el-row>
-					<el-button type = "primary" @click= "handleSearch">查&nbsp;&nbsp;询</el-button>
-					<el-button type = "info" @click= "handleClear">重&nbsp;&nbsp;置</el-button>
+					<el-button v-if = "!seachTableDate.searchGroup.searchBtnHidden" type = "primary" @click= "handleSearch">查询</el-button>
+					<el-button v-if = "!seachTableDate.searchGroup.clearBtnHidden" type = "info" @click= "handleClear">重置</el-button>
+					<el-button v-for = "action in seachTableDate.searchGroup.actions" :key = "action.name" @click = "handleSerachOprationClick(action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
 				</el-row>
 			</div>
 		</div>
@@ -164,7 +165,14 @@
 	      	handleCurrentChange(val) {
 				this.currentPage = val
 				this.$emit('onChange', this.searchData);
-	      	}
+			},
+			/**
+			 * @description 点击查询中的按钮
+			 * @augments （String） type  当前点击的按钮类型  这个类型是有父组件提供tableGroup > opration > actions 中的key值 用来让父组件区分具体点击了哪个方法
+			 */
+			handleSerachOprationClick(type) {
+				this.$emit('onSerachOprationClick', this.searchData, type);
+			}  
        	}
     }
 </script>
@@ -218,6 +226,8 @@
 	.el-button {
 		padding: 8px 12px;
 		margin: 5px 0;
+		letter-spacing: 4px;
+    	padding-right: 8px;
 	}
 	.el-input__icon {
 		line-height: 32px;

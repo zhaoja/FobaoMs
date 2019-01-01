@@ -26,6 +26,7 @@ import UserMsDetails from '@/containers/userMs/userMsDetails'
 import PhoneCard from '@/containers/phoneCard/phoneCard'
 import NewPhoneCard from '@/containers/phoneCard/NewPhoneCard'
 import PhoneCardDetails from '@/containers/phoneCard/phoneCardDetails'
+import PhoneCardEdit from '@/containers/phoneCard/PhoneCardEdit'
  
 Vue.use(Router)
 
@@ -34,10 +35,11 @@ export default new Router({
 	    routes:[
             {path:"/",component:Layout,children:[
             	
-                {path:"/userMs",name:"用户管理",component:UserMs},
-                {path:"/userMsDetails",name:"详情",component:UserMsDetails},
-                {path:"/phoneCard",name:"北京通手机卡",component:PhoneCard},
-                {path:"/PhoneCardDetails",name:"详情",component:PhoneCardDetails},
+                {path: "/userMs", name: "用户管理", component: UserMs},
+                {path: "/userMsDetails", name: "详情", component: UserMsDetails},
+                {path: "/phoneCard", name: "北京通手机卡", component: PhoneCard},
+                {path: "/PhoneCardDetails", name: "详情", component: PhoneCardDetails},
+                {path: '/PhoneCardEdit', name: '编辑', component: PhoneCardEdit},
                 {path: '/phoneCardNew', name: '北京通手机卡', component: NewPhoneCard},
                 
 //              {path:"/businessMage",name:"业务管理",component:busManage},

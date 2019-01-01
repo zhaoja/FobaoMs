@@ -1,7 +1,6 @@
 <template>
-	<div id="">
-		
-	 	<UserTable :seachTableDate="data" @onSearch = "onSearch" @onOprationClick = 'onOprationClick' @onChange = 'onChange'/>
+	<div id="">	
+	 	<UserTable :seachTableDate="data" @onSearch = "onSearch" @onOprationClick = 'onOprationClick' @onChange = 'onChange' @onSerachOprationClick = 'onSerachOprationClick'/>
 	</div>
 		 
 </template>
@@ -12,15 +11,17 @@
     let testData = {
             searchGroup: {
                 rowNum: 3,
-                labelWidth: '120px',
+                labelWidth: '120px',  // 可选值  总体的labelWidth 可以单独为每一项设置
+                searchBtnHidden: false, // 可选值 
+                clearBtnHidden: true,  // 可选值 是否显示按钮
                 items: [
                     {	
                         key: 'name',
                         name: '姓名',
                         type: 'input',
-                        value: '123',
-                        labelWidth: '80px',
-                        placeholder: '请输入...'
+                        // value: '123', // 默认值 可以不添加
+                        labelWidth: '80px',  // 可选值  这个label优先  如果没有 默认会选searchGroup里面的labelWidth 
+                        // placeholder: '请输入...' // 可以不写  默认及时请输入...
                     },
                     {	
                         key: 'selectType',
@@ -35,7 +36,7 @@
                         },{
                             value: '选项2',
                             label: '黄金糕',
-                            disabled: true
+                            disabled: true  // 是否不可以选择
                         }],
                         labelWidth: '80px',
                         // placeholder: ''
@@ -62,12 +63,24 @@
                         name: '时间',
                         type: 'dataPick',
                         dataPickType: 'daterange',  // 时间段选择
-                        // valueFormat: 'yyyy-MM-dd',
+                        // valueFormat: 'yyyy-MM-dd', // 设置获取的时间格式 默认就是 yyyy-MM-dd
                         value: '',
                         labelWidth: '80px',
                         placeholder: ''
                     },
-                ]
+                ],
+                actions: [{
+                        key: 'export', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
+                        name: '导出',  // 操作按钮名字
+                        // size: 'small', // 可选 用于按钮大小
+                        type: 'primary',  // 可选 按钮类型
+                    },
+                    {
+                        key: 'addNew', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
+                        name: '新增',  // 操作按钮名字
+                        // size: 'small', // 可选 用于按钮大小
+                        type: 'primary',  // 可选 按钮类型
+                }]
             },
             tableGroup: {
                 tHeadData: [
@@ -133,8 +146,7 @@
                         name: '编辑',  // 操作按钮名字
                         size: 'small', // 可选 用于按钮大小
                         type: 'text',  // 可选 按钮类型
-                    }
-                    ]
+                    }]
                 }
             },
             pagination: {
@@ -217,6 +229,9 @@
             onChange(paginationData) {
                 console.log('分页数据:', paginationData)
                 this.data.tableGroup.tData = tableData
+            },
+            onSerachOprationClick(searchData, type) {
+                console.log('查询结果：', searchData, '哪个按钮：', type)
             }
 
         }
