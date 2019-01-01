@@ -177,7 +177,7 @@
     }
 </script>
 
-<style lang = "less" >
+<style lang = "less">
 .search-panel-container {
 	display: flex;
 	flex-wrap: wrap;
