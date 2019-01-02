@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<CardTable 
-		:seachTableDate="phoneCardList" 
+		:seachTableDate="phoneCardList.phoneCardData" 
 		@onSearch="onSearch" 
 		@onOprationClick='onOprationClick' 
 		@onChange='onChange' 
 		@onSerachOprationClick='onSerachOprationClick' />
 	
-{{phoneCardList}}</div>
+{{phoneCardList.phoneCardData}}</div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@
 		},
 		computed: {
 			...mapState({
-				phoneCardList: state => state.phoneCardMs.phoneCardMs.phoneCardData
+				phoneCardList: state => state.phoneCardMs.phoneCardMs
 			})
 		},
 

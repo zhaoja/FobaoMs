@@ -170,7 +170,7 @@ let testData = {
 		}
 	}
 
-	let tableData = [{
+let tableData = [{
 		id: '32141',
 		name: '张军',
 		phone: '15010971578',
@@ -219,15 +219,15 @@ export default {
 		phoneCardMs:{
 			phoneCardData:seachTable,
 			detail:{
-				detail:[
-					{name:'姓名',value:'王军'},
-	            	{name:'手机号',value:'12312312332'},
-	            	{name:'身份证号',value:'12312312332'},
-	            	{name:'养老助残卡号',value:'12312312332'},
-	            	{name:'注册时间',value:'12312312332'},
-				],
-				receiptInfo:seachTable,
-				operationRecord:{}
+//				detail:[
+//					{name:'姓名',value:'王军'},
+//	            	{name:'手机号',value:'12312312332'},
+//	            	{name:'身份证号',value:'12312312332'},
+//	            	{name:'养老助残卡号',value:'12312312332'},
+//	            	{name:'注册时间',value:'12312312332'},
+//				],
+//				receiptInfo:seachTable,
+//				operationRecord:{}
 			}
 		}
 	},
@@ -240,8 +240,8 @@ export default {
 				 	searchBtnHidden: false, // 可选值 
 					clearBtnHidden: false, // 可选值 是否显示按钮
 					items: [
-					{key: '', name: '手机号', type: 'input' },
-					{key: '', name: '身份证号', type: 'input'}]
+					{key: '111', name: '手机号', type: 'input' },
+					{key: '11', name: '身份证号', type: 'input'}]
 				},
 				tableGroup: {
 					tHeadData: [
@@ -268,14 +268,14 @@ export default {
 				}
 			};
 			 
-            dataFormat.tableGroup.tData = textdata;
+            dataFormat.tableGroup.tData = testData;
             dataFormat.pagination = {
 				total: 10,  
 				currentPage: 1,  
 				pageSize: 1
 			}
  			
-	   		commit('phoneCardListSuccess', data)
+	   		commit('phoneCardListSuccess', dataFormat)
         },	   		
 
         getUserListDetails({commit, state},items){
@@ -287,8 +287,8 @@ export default {
     mutations: {
         phoneCardListSuccess(state, data) {
   
-            state.carddata = data;
-            console.log(state, data)
+//          state.phoneCardMs.phoneCardData = data;
+//          console.log(state, data)
         } ,
         getUserListDetailsSuccess(state, data) {
   
