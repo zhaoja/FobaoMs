@@ -5,7 +5,7 @@
 -->
 <template>
 	<div>
-		<!--<h3>{{tableData}}</h3>-->
+		<!--搜索组件-->
 		<div class="search-panel-container">
 			<div class = "panel-input" v-for = "formItem in formList" :key = "formItem.key" :style = "{width: (100/seachTableDate.searchGroup.rowNum+'%')}">
 				<label :style = "{ width: formItem.labelWidth || seachTableDate.searchGroup.labelWidth || 'auto'}">{{formItem.name}}：</label>
@@ -39,40 +39,44 @@
 					:start-placeholder = "formItem.startPlaceholder ? formItem.startPlaceholder : '开始日期'"
       				:end-placeholder = "formItem.EndPlaceholder ? formItem.EndPlaceholder : '结束日期'"
 					v-model = "formItem.value">
-				</el-date-picker>	
+				</el-date-picker>
 			</div>
 			<div class = "serach-btn">
 				<el-row>
-					<el-button type = "primary" @click= "handleSearch">查&nbsp;&nbsp;询</el-button>
-					<el-button type = "info" @click= "handleClear">重&nbsp;&nbsp;置</el-button>
+					<el-button v-if = "!seachTableDate.searchGroup.searchBtnHidden" type = "primary" @click= "handleSearch">查询</el-button>
+					<el-button v-if = "!seachTableDate.searchGroup.clearBtnHidden" type = "info" @click= "handleClear">重置</el-button>
+					<el-button v-for = "action in seachTableDate.searchGroup.actions" :key = "action.name" @click = "handleSerachOprationClick(action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
 				</el-row>
 			</div>
 		</div>
-
-	    <el-table  :data="tableData.tData" style="width: 100%;">
-	        <el-table-column v-for="th in tableData.tHead" :key = "th.name"  v-bind:prop="th.name" v-bind:label="th.cname">
+		<!--搜索组件-->
+		<!--table组件-->
+	    <el-table  :data="seachTableDate.tableGroup.tData" style="width: 100%;">
+	        <el-table-column v-for = "th in seachTableDate.tableGroup.tHeadData" :key = "th.prop" :prop = "th.prop" :label = "th.name" :width = "th.width">
 	        </el-table-column>
 	        <el-table-column
-		      fixed="right"
-		      label="操作"
-		      width="250" v-if="tableData.showOpration">
+		      :fixed = "seachTableDate.tableGroup.Opration.fixed ? seachTableDate.tableGroup.Opration.fixed : 'right'"
+		      :label = "seachTableDate.tableGroup.Opration.oprationName ? seachTableDate.tableGroup.Opration.oprationName : '操作'"
+		      :width = "seachTableDate.tableGroup.Opration.width" v-if = "seachTableDate.tableGroup.Opration">
 		      <template slot-scope="scope">
-		      	<el-switch style="float: left;margin-right: 10px; margin-top: 7px;" v-for="eb in tableData.editSwitch" v-model="scope.row.freeze" @change="change(scope.row,eb.act)" :active-text="eb.name1" :inactive-text="eb.name2"></el-switch>
-		        <el-button v-for="eb in tableData.editBtn" @click="handClick(scope.row,eb.act)" type="text" size="small">{{eb.name}}</el-button>
-		      </template>
+		        <el-button v-for = "action in seachTableDate.tableGroup.Opration.actions" :key = "action.name" @click = "handleOprationClick(scope.row, action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
+			  </template> 
 		    </el-table-column>
 	    </el-table>
-		 <el-pagination
-		 	v-if="tableData.pagination"
+		<!--table组件-->
+		<!--分页组件-->
+		<el-pagination
+		 	v-if="seachTableDate.pagination"
 		  background
-	      @size-change="handleSizeChange" 
-	      @current-change="handleCurrentChange"
-	      :current-page="currentPage"
-	      :page-sizes="[100, 200, 300, 400]"
-	      :page-size="100"
-	      layout="total, sizes, prev, pager, next, jumper"
-	      :total="400">
+	      @size-change = "handleSizeChange" 
+	      @current-change = "handleCurrentChange"
+	      :current-page = "currentPage"
+	      :page-sizes = "[10, 20, 50, 100]"
+	      :page-size = "seachTableDate.pagination.pageSize ? seachTableDate.pagination.pageSize : 10"
+	      layout = "total, sizes, prev, pager, next, jumper"
+	      :total = "seachTableDate.pagination.total">
 	    </el-pagination>
+		<!--分页组件-->
 	</div>
 </template>
 
@@ -81,77 +85,15 @@
 	import _ from 'lodash';
     export default {
        	props:{
-			tableData: Object,
 			seachTableDate: {
 				type: Object,
-				// required: true,
-				default: () =>  {
-					return {
-						searchGroup: {
-							rowNum: 3,
-							labelWidth: '120px',
-							items: [
-								{	
-									key: 'name',
-									name: '姓名',
-									type: 'input',
-									value: '123',
-									labelWidth: '80px',
-									placeholder: '请输入...'
-								},
-								{	
-									key: 'selectType',
-									name: '选择框',
-									type: 'select',
-									value: '',
-									// clearable: false,  // 是否可以清空
-									// disabled: false,  // 是否可选
-									options: [{
-										value: '选项1',
-          								label: '黄金糕'
-									},{
-										value: '选项2',
-										label: '黄金糕',
-										disabled: true
-									}],
-									labelWidth: '80px',
-									// placeholder: ''
-								},
-								{	
-									key: 'name3',
-									name: '姓名',
-									type: 'input',
-									value: '123',
-									labelWidth: '80px',
-									placeholder: '请输入...'
-								},
-								{	
-									key: 'name2',
-									name: '姓名',
-									type: 'dataPick',
-									value: '',
-									labelWidth: '80px',
-									// valueFormat: 'yyyy-MM-dd',  // 设置获取的时间格式 默认就是 yyyy-MM-dd
-									placeholder: ''
-								},
-								{	
-									key: 'name22',
-									name: '时间',
-									type: 'dataPick',
-									dataPickType: 'daterange',  // 时间段选择
-									// valueFormat: 'yyyy-MM-dd',
-									value: '123',
-									labelWidth: '80px',
-									placeholder: ''
-								},
-							]
-						}
-					}
-				}
+				required: true
 			}
 		},   //props以数组的形式定义属性
 		mounted() {
-			this.formList = _.cloneDeep(this.seachTableDate).searchGroup.items
+			this.formList = _.cloneDeep(this.seachTableDate).searchGroup.items;  // 将搜索组件的 input数组copy
+			this.currentPage = this.seachTableDate.pagination.currentPage;  // 获取初始的currentPage
+			this.pageSize = this.seachTableDate.pagination.pageSize;	// 获取初始的pageSize
 		},      
        	components: {
 	         
@@ -159,52 +101,83 @@
        	data(){
        		return{
 				formList: [],
-       			input:"" ,
-				valueChose:true,
-       		 	currentPage:1
+				currentPage: 0,
+				pageSize: 0,
        		}
-       	},
-       	methods:{
-			handleSearch() {
+		},
+		computed: {
+			/**
+			 * @description 计算searchData 获取到各个input类型组件中的value 同时将分页组件的数据放到搜索条件中
+			 * @return (Object) searchData 包括分页信息的搜索条件
+			 */
+			searchData() {
 				let searchData = {};
 				this.formList.forEach(item => {
 					searchData[item.key] = item.value;
 				});
-				console.log(searchData,'searchData')
-			},
-			handleClear() {
-				this.formList = _.cloneDeep(this.seachTableDate).searchGroup.items
-			},
-       		seachTable(value){
-       			console.log(value)
-       		},
-       		handClick(a,b){
-				var params ={
-					id : a.idcard
+				searchData = Object.assign({}, searchData, {
+					currentPage: this.currentPage,
+					pageSize: this.pageSize
+				})
+				return searchData
+			}
+		},   
+       	methods:{
+			/**
+			 * @description 点击查询 向父组件发送查询数据
+			 */
+			handleSearch() {
+				this.$emit('onSearch', this.searchData);
+				if (this.seachTableDate.pagination.currentPage !== this.currentPage) {
+					this.currentPage = this.seachTableDate.pagination.currentPage
 				}
-				console.log(`${this.$route.path}Details`)
-       			this.$router.push({path:`${this.$route.path}Details`,query:params})
-//				this.$store.dispatch('getUserListDetails',params)
-       		},
+			},
+			/**
+			 * @description 点击查询 清空数据 并向触发父组件 onClear方法
+			 */
+			handleClear() {
+				this.formList = _.cloneDeep(this.seachTableDate).searchGroup.items;
+				this.$emit('onClear', '点击了清除');
+			},
+			/**
+			 * @description 点击表格中的按钮
+			 * @augments （Object） data  table当前行的数据
+			 * @augments （String） type  当前点击的按钮类型  这个类型是有父组件提供tableGroup > opration > actions 中的key值 用来让父组件区分具体点击了哪个方法
+			 */
+       		handleOprationClick(data, type){
+				this.$emit('onOprationClick', data, type);
+			},
+			/**
+			 * @description 分页的更换分页pageSize方法  会触发父组件onSizeChange方法 用的情况比较少
+			 * @augments （Number） val  当前的pageSize
+			 */
    		 	handleSizeChange(val) {
-		        console.log(`每页 ${val} 条`);
-	      	},
+				this.pageSize = val;
+				if (Math.ceil(this.seachTableDate.pagination.total/this.pageSize) >= this.currentPage) {
+					this.$emit('onChange', this.searchData);
+				}
+				this.$emit('onSizeChange', val);
+			},
+			/**
+			 * @description 分页改变的方法 只要改变分页就会触发  并触发父组件onChange方法，将查询值及分页信息 传递到父组件
+			 * @augments （Number） val  当前的pageSize
+			 */
 	      	handleCurrentChange(val) {
-		        console.log(`当前页: ${val}`);
-	      	},
-	      	change(a,b){
-	      		console.log(this.valueChose)
-	      		console.log(a,b)
-//	      		this.valueChose = false
-	      	},
-	      	onSubmit(){
-	      		
-	      	}
+				this.currentPage = val
+				this.$emit('onChange', this.searchData);
+			},
+			/**
+			 * @description 点击查询中的按钮
+			 * @augments （String） type  当前点击的按钮类型  这个类型是有父组件提供tableGroup > opration > actions 中的key值 用来让父组件区分具体点击了哪个方法
+			 */
+			handleSerachOprationClick(type) {
+				this.$emit('onSerachOprationClick', this.searchData, type);
+			}  
        	}
     }
 </script>
 
-<style lang = "less" >
+<style lang = "less">
 .search-panel-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -253,6 +226,8 @@
 	.el-button {
 		padding: 8px 12px;
 		margin: 5px 0;
+		letter-spacing: 4px;
+    	padding-right: 8px;
 	}
 	.el-input__icon {
 		line-height: 32px;
