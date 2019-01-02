@@ -4,7 +4,7 @@
 	 		<div class="detail-title" style="margin-top: 0;">用户信息</div>
 	 		<div class="detail-container">
 	 			<ul class="detail-ul">
-	 				<li v-for="de in detail">
+	 				<li v-for="de in detail" :key="de.value">
 	 					<span>{{de.name}}： </span>{{de.value}}
 	 				</li>
 	 			</ul>

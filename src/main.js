@@ -22,17 +22,18 @@ import App from './App'
 import router from './router'
 
 // models 层
-import Login from './models/Login'
-import Calendar from './models/calendar'
-import Tree from './models/tree'
-import Layout from './models/layout'
-import Table from './models/table'
-
-import Staff from './models/staff'
+//import Login from './models/Login'
+//import Calendar from './models/calendar'
+//import Tree from './models/tree'
+//import Layout from './models/layout'
+//import Table from './models/table'
+//
+//import Staff from './models/staff'
 
 //项目文件
-import UserMs from './models/userMs'
-import PhoneCard from './models/phoneCard'
+import Layout from './models/layout' //项目框架
+import UserMs from './models/userMs' //用户管理
+import PhoneCardMs from './models/phoneCard' //手机卡
 
 
 Vue.config.productionTip = false
@@ -42,14 +43,14 @@ Vue.use(ElementUI)
 
 const store = new Vuex.Store({
   modules: {
-    login: Login,
-    calendar: Calendar,
-    tree: Tree,
+//  login: Login,
+//  calendar: Calendar,
+//  tree: Tree,
+//  component:Table,
+//  staff:Staff,
     layout: Layout,
-    component:Table,
-    staff:Staff,
     userMs:UserMs,
-    phoneCard:PhoneCard,
+    phoneCardMs:PhoneCardMs,
   }
 })
  

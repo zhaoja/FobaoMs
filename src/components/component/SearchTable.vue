@@ -8,7 +8,7 @@
 		<!--搜索组件-->
 		<div class="search-panel-container">
 			<div class = "panel-input" v-for = "formItem in formList" :key = "formItem.key" :style = "{width: (100/seachTableDate.searchGroup.rowNum+'%')}">
-				<label :style = "{ width: formItem.labelWidth || seachTableDate.searchGroup.labelWidth || 'auto'}">{{formItem.name}}：</label>
+				<label :style = "{ width: formItem.labelWidth || seachTableDate.searchGroup.labelWidth || 'auto'}">{{formItem.name}}<span v-if="formItem.name">：</span></label>
 				<el-input
 					v-if = "formItem.type === 'input'"
 				  	:placeholder = "formItem.placeholder ? formItem.placeholder : '请输入...'" 
@@ -45,7 +45,7 @@
 				<el-row>
 					<el-button v-if = "!seachTableDate.searchGroup.searchBtnHidden" type = "primary" @click= "handleSearch">查询</el-button>
 					<el-button v-if = "!seachTableDate.searchGroup.clearBtnHidden" type = "info" @click= "handleClear">重置</el-button>
-					<el-button v-for = "action in seachTableDate.searchGroup.actions" :key = "action.name" @click = "handleSerachOprationClick(action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
+					<el-button v-for = "action in seachTableDate.searchGroup.actions" :key = "action.name" @click = "handleSerachOprationClick(action.key)" :type = "action.type" :size = "action.size" v-if="action.name">{{action.name}}</el-button>
 				</el-row>
 			</div>
 		</div>
@@ -59,7 +59,11 @@
 		      :label = "seachTableDate.tableGroup.Opration.oprationName ? seachTableDate.tableGroup.Opration.oprationName : '操作'"
 		      :width = "seachTableDate.tableGroup.Opration.width" v-if = "seachTableDate.tableGroup.Opration">
 		      <template slot-scope="scope">
-		        <el-button v-for = "action in seachTableDate.tableGroup.Opration.actions" :key = "action.name" @click = "handleOprationClick(scope.row, action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
+		      	<el-switch v-if="action.name2" v-for="action in seachTableDate.tableGroup.Opration.actions" v-model="scope.row.freeze" @change="changeSwitch(scope.row,action.key)" :key = "action.name"
+		      		 :active-text="action.name2" :inactive-text="action.name" 
+		      		  active-color="#ff4949"  inactive-color="#ccc"
+		      		 ></el-switch>
+		        <el-button v-if="!action.name2" v-for = "action in seachTableDate.tableGroup.Opration.actions" :key = "action.name" @click = "handleOprationClick(scope.row, action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
 			  </template> 
 		    </el-table-column>
 	    </el-table>
@@ -139,6 +143,14 @@
 				this.formList = _.cloneDeep(this.seachTableDate).searchGroup.items;
 				this.$emit('onClear', '点击了清除');
 			},
+			/**
+			 * @description 滑动选择
+			 */
+			changeSwitch(a,b){
+	      		console.log(this.valueChose)
+	      		console.log(a,b)
+//	      		this.valueChose = false
+	      	},
 			/**
 			 * @description 点击表格中的按钮
 			 * @augments （Object） data  table当前行的数据

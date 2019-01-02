@@ -3,8 +3,8 @@
 	 	<div class="detail-inner">
 	 		<div class="detail-title" style="margin-top: 0;">用户信息</div>
 	 		<div class="detail-container">
-	 			<ul class="detail-ul">
-	 				<li v-for="de in detail">
+	 			<ul class="detail-ul"> 
+	 				<li v-for="de in details.detail" :key="de.value">
 	 					<span>{{de.name}}： </span>{{de.value}}
 	 				</li>
 	 			</ul>
@@ -12,15 +12,20 @@
 	 	</div>
 	 	<div class="detail-inner">
 	 		<div class="detail-title">常用收获信息</div>
-	 		<div class="detail-container">
-	 			<!--{{details}}-->
-	 			<UserTable :tableData="details.receiptInfo"/></el-col>
+	 		<div class="detail-container"> 
+	 			<!--{{details.receiptInfo}}-->
+				<personTable :seachTableDate="details.receiptInfo"
+					 @onOprationClick='onOprationClick' 
+					 @onChange='onChange' @onSerachOprationClick='onSerachOprationClick' />
+ 
 	 		</div>
 	 	</div>
 	 	<div class="detail-inner">
 	 		<div class="detail-title">操作记录</div>
 	 		<div class="detail-container">
-	 			<UserTable :tableData="details.operationRecord"/></el-col>
+	 			<personTable :seachTableDate="details.operationRecord"
+					 @onOprationClick='onOprationClick' 
+					 @onChange='onChange' @onSerachOprationClick='onSerachOprationClick' />
 	 		</div>
 	 	</div>
 	</div>
@@ -29,26 +34,16 @@
 
 <script>
     import { mapState } from 'vuex'
-	import UserTable from '../../components/component/table'
+	import PersonTable from '../../components/component/SearchTable'
 
     export default {
     	components: {
-	        UserTable
+	        PersonTable
 	      },
-    	data(){
-    		return {
-    			 detail:[
-	            	{name:'姓名',value:'王军'},
-	            	{name:'手机号',value:'12312312332'},
-	            	{name:'身份证号',value:'12312312332'},
-	            	{name:'养老助残卡号',value:'12312312332'},
-	            	{name:'注册时间',value:'12312312332'},
-	            ]
-    		}
-    	},
+    	 
         computed: {
             ...mapState({
-                details: state => state.userMs.details,
+            	details: state => state.userMs.userMs.details 
                 
               })
         },
@@ -56,8 +51,39 @@
 //          this.$store.dispatch('getUserList');
 			var params = this.$route.query.id 
 			this.$store.dispatch('getUserListDetails',params)
-
+		 
         }, 
+        methods: {
+			onSearch(searchData) {
+				 
+			},
+			onOprationClick(data, type) {
+				if(type === 'detail') {
+					var params = {
+						id: data.idcard
+					}
+					this.$router.push({
+						path: `${this.$route.path}Details`,
+						query: params
+					})
+				} else if(type === 'edit') {
+					var params = {
+						id: data.idcard
+					}
+					this.$router.push({
+						path: `${this.$route.path}Edit`,
+						query: params
+					})
+				}
+			},
+			onChange(paginationData) {
+				console.log('分页数据:', paginationData)
+//				this.data.tableGroup.tData = tableData // 模拟查询
+			},
+			onSerachOprationClick(searchData, type) {
+				console.log('查询结果：', searchData, '哪个按钮：', type)
+			}
+        }
     }
 </script>
 

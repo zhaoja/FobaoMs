@@ -1,299 +1,176 @@
+var textdata = [{
+	name: '王军',
+	phone: '15010971578',
+	idcard: '130221167008273849',
+	state1: '2011-05-05',
+	state2: '2011-05-05',
+	freeze: false
+}, {
+	name: '王军',
+	phone: '15010971578',
+	idcard: '130221167008273849',
+	state1: '2011-05-05',
+	state2: '2011-05-05',
+	freeze: true
+}, {
+	name: '王军',
+	phone: '15010971578',
+	idcard: '130221167008273849',
+	state1: '2011-05-05',
+	state2: '2011-05-05',
+	freeze: false
+}, {
+	name: '王军',
+	phone: '15010971578',
+	idcard: '130221167008273849',
+	state1: '审核中',
+	state2: '待制卡',
+	freeze: true
+}, {
+	name: '王军',
+	phone: '15010971578',
+	idcard: '130221167008273849',
+	state1: '审核中',
+	state2: '待制卡',
+	freeze: true
+}];
+
+import seachTable from '@/utils/seachTable.js'
+ 
 export default {
 	state: {
-		userdata: {
-			tTitle: "",
-			showOpration: true,
-			pagination: true,
-			searchGroup: {
-				searchInput: [
-					{
-						name: '',
-						cname: ''
-					}
+		userMs:{
+			userdata:seachTable,
+			detail:{
+				detail:[
+					{name:'姓名',value:'王军'},
+	            	{name:'手机号',value:'12312312332'},
+	            	{name:'身份证号',value:'12312312332'},
+	            	{name:'养老助残卡号',value:'12312312332'},
+	            	{name:'注册时间',value:'12312312332'},
 				],
-				searchSelect: [
-					{ 	name: '',
-						cname: '',
-						option:[
-							{name:"",value:""},
-							{name:"",value:""},
-							{name:"",value:""},
-						]
-					},
-				],
-				searchBtn: [
-					{name:""}
-				],
-			},
-
-			tHead: [],
-			tData: [],
-			editBtn: [],
-		},
-//		details: {
-//			basicInfo: [{
-//					name: '姓名',
-//					value: '王军'
-//				},
-//				{
-//					name: '手机号',
-//					value: '12312312332'
-//				},
-//				{
-//					name: '身份证号',
-//					value: '12312312332'
-//				},
-//				{
-//					name: '养老助残卡号',
-//					value: '12312312332'
-//				},
-//				{
-//					name: '注册时间',
-//					value: '12312312332'
-//				},
-//			],
-//			receiptInfo: {
-//				tTitle: "",
-//				seach: false,
-//				showOpration: false,
-//				pagination: false,
-//				searchGroup: [],
-//				tHead: [],
-//				tData: [],
-//				editBtn: [],
-//			},
-//			operationRecord: {
-//				tTitle: "",
-//				seach: false,
-//				showOpration: false,
-//				pagination: true,
-//				searchGroup: [],
-//				tHead: [],
-//				tData: [],
-//				editBtn: [],
-//			}
-//		}
+				receiptInfo:seachTable,
+				operationRecord:{}
+			}
+		}
 	},
 	actions: {
+		//用户列表
 		getUserList({commit,state}, items) {
-			var data = {};
-			data.tTitle = "组织管理";
-			data.showOpration = true;
-			data.pagination = true;
-			data.searchGroup = {
-				searchInput: [{
-						name: 'phone',
-						cname: '手机号'
-					},
-					{
-						name: 'idcard',
-						cname: '身份证号'
-					},
-				],
-				searchSelect: [],
-				searchBtn: [
-					{name:"查询"}
-				],
-			}
-
-			data.tHead = [{
-					name: "name",
-					cname: '姓名'
+	
+            var dataFormat = {
+				searchGroup: {
+					rowNum: 3,
+					labelWidth: '100px', // 总体的labelWidth 可以单独为每一项设置
+				 	searchBtnHidden: false, // 可选值 
+					clearBtnHidden: false, // 可选值 是否显示按钮
+					items: [
+					{key: '', name: '手机号', type: 'input' },
+					{key: '', name: '身份证号', type: 'input'}]
 				},
-				{
-					name: "phone",
-					cname: '手机号'
-				},
-				{
-					name: "idcard",
-					cname: '身份证号'
-				},
-				{
-					name: "idcard",
-					cname: '养老助残卡号'
-				},
-				{
-					name: "state1",
-					cname: '注册时间'
-				},
-				{
-					name: "state2",
-					cname: '最后登录时间'
-				}
-			]
-			data.tData = [{
-				name: '王军',
-				phone: '15010971578',
-				idcard: '130221167008273849',
-				state1: '2011-05-05',
-				state2: '2011-05-05',
-				freeze: false
-			}, {
-				name: '王军',
-				phone: '15010971578',
-				idcard: '130221167008273849',
-				state1: '2011-05-05',
-				state2: '2011-05-05',
-				freeze: true
-			}, {
-				name: '王军',
-				phone: '15010971578',
-				idcard: '130221167008273849',
-				state1: '2011-05-05',
-				state2: '2011-05-05',
-				freeze: false
-			}, {
-				name: '王军',
-				phone: '15010971578',
-				idcard: '130221167008273849',
-				state1: '审核中',
-				state2: '待制卡',
-				freeze: true
-			}, {
-				name: '王军',
-				phone: '15010971578',
-				idcard: '130221167008273849',
-				state1: '审核中',
-				state2: '待制卡',
-				freeze: true
-			}, ];
-			data.editSwitch = [{
-				name1: "冻结",
-				name2: "解冻",
-				act: "freeze"
-			}, ];
-			data.editBtn = [
-				//          	{name:"冻结",act:"freeze"},
-				//          	{name:"解冻",act:"defrost"},
-				{
-					name: "详情",
-					act: "detail"
-				},
-			]
-			commit('getUserListSuccess', data)
-		},
-
-		getUserListDetails({
-			commit,
-			state
-		}, items) {
-			console.log(items)
-			var data = {
-				receiptInfo: {
-					tTitle: "组织管理",
-					seach: false,
-					showOpration: false,
-					pagination: false,
-					tHead: [{
-							name: "name",
-							cname: '收货人姓名'
-						},
-						{
-							name: "phone",
-							cname: '性别'
-						},
-						{
-							name: "idcard",
-							cname: '手机号'
-						},
-						{
-							name: "idcard",
-							cname: '地址'
-						},
-						{
-							name: "state1",
-							cname: '常用地址'
-						},
+				tableGroup: {
+					tHeadData: [
+						{prop: "name",name: '姓名'}, 
+						{prop: "name",name: '手机号'}, 
+						{prop: "name",name: '身份证号'}, 
+						{prop: "name",name: '养老助残卡号'}, 
+						{prop: "name",name: '注册时间'}, 
+						{prop: "name",name: '最后登录时间'}, 
 					],
-					tData: [{
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '2011-05-05',
-						state2: '2011-05-05',
-						freeze: false
-					}, {
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '2011-05-05',
-						state2: '2011-05-05',
-						freeze: true
-					}]
-				},
-				operationRecord: {
-					tTitle: "组织管理",
-					seach: false,
-					showOpration: false,
-					pagination: true,
-					tHead: [{
-							name: "name",
-							cname: '操作时间'
-						},
-						{
-							name: "phone",
-							cname: '模块名称'
-						},
-						{
-							name: "idcard",
-							cname: '页面名称'
-						},
-						{
-							name: "idcard",
-							cname: 'url'
-						}
-					],
-					tData: [{
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '2011-05-05',
-						state2: '2011-05-05',
-						freeze: false
-					}, {
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '2011-05-05',
-						state2: '2011-05-05',
-						freeze: true
-					}, {
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '2011-05-05',
-						state2: '2011-05-05',
-						freeze: false
-					}, {
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '审核中',
-						state2: '待制卡',
-						freeze: true
-					}, {
-						name: '王军',
-						phone: '15010971578',
-						idcard: '130221167008273849',
-						state1: '审核中',
-						state2: '待制卡',
-						freeze: true
-					}, ]
+					Opration: {
+						width: '200',
+						actions: [{
+								key: 'detail', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
+								name: '详情', // 操作按钮名字
+								size: 'mini', // 可选 用于按钮大小
+								type: 'primary', // 可选 按钮类型
+						},{
+							key: "freeze",
+							name: "正常",
+							name2: "冻结",
+						}]
+					}
 				}
 			};
-
-			commit('getUserListDetailsSuccess', data)
+			 
+            dataFormat.tableGroup.tData = textdata;
+            dataFormat.pagination = {
+				total: 10,  
+				currentPage: 1,  
+				pageSize: 1
+			}
+ 
+			commit('getUserListSuccess', dataFormat)
+		},
+		//查看详情
+		getUserListDetails({ commit, state }, items) {
+//			console.log(items)
+			var dataFormat1 = {
+				searchGroup: {
+					searchBtnHidden: true, // 可选值 
+					clearBtnHidden: true, // 可选值 是否显示按钮
+				},
+				tableGroup: {
+					tHeadData: [
+						{prop: "name",name: '收货人姓名'}, 
+						{prop: "name",name: '性别'}, 
+						{prop: "name",name: '手机号'}, 
+						{prop: "name",name: '地址'}, 
+						{prop: "name",name: '常用地址'} 
+					],
+					 tData : textdata
+				},
+				pagination : {
+					total: 10,  
+					currentPage: 1,  
+					pageSize: 1
+				}
+			};
+			 var dataFormat2 = {
+				searchGroup: {
+					searchBtnHidden: true, // 可选值 
+					clearBtnHidden: true, // 可选值 是否显示按钮
+				},
+				tableGroup: {
+					tHeadData: [
+						{prop: "name",name: '操作时间'}, 
+						{prop: "name",name: '模块名称'}, 
+						{prop: "name",name: '页面名称'}, 
+						{prop: "name",name: 'URL'}
+					],
+					 tData : textdata
+				},
+				pagination : {
+					total: 10,  
+					currentPage: 1,  
+					pageSize: 1
+				}
+			};
+			let dataFormat = {
+				detail:[
+	            	{name:'姓名',value:'王军'},
+	            	{name:'手机号',value:'12312312332'},
+	            	{name:'身份证号',value:'12312312332'},
+	            	{name:'养老助残卡号',value:'12312312332'},
+	            	{name:'注册时间',value:'12312312332'},
+				],
+				receiptInfo:dataFormat1,
+				 
+				operationRecord:dataFormat2
+			}
+ 
+			commit('getUserListDetailsSuccess', dataFormat)
 		}
 	},
 	mutations: {
 		getUserListSuccess(state, data) {
 
-			state.userdata = data;
-			console.log(state, data)
+			state.userMs.userdata = data;
+//			console.log(state, 1111,data)
 		},
 		getUserListDetailsSuccess(state, data) {
 
-			state.details = data;
+			state.userMs.details = data;
 			console.log(state, data)
 		}
 	}

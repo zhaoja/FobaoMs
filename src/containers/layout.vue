@@ -7,7 +7,7 @@
          	<el-col class="breadCrumb ace-save-state">
 				<el-breadcrumb separator-class="el-icon-arrow-right">
 					<span class="el-breadcrumb__item breadcrumbItem1">当前位置为 : </span>
-					<!--<el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>-->
+					<el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
 					<el-breadcrumb-item v-for="br in breadcrumb"  :key="br">{{brDic[br]}}</el-breadcrumb-item>
 				</el-breadcrumb>
 			</el-col>
