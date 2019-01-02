@@ -7,7 +7,7 @@
 		@onChange='onChange' 
 		@onSerachOprationClick='onSerachOprationClick' />
 	
-{{phoneCardList.phoneCardData}}</div>
+{{phoneCardList}}</div>
 </template>
 
 <script>

@@ -23,6 +23,7 @@ import Layout from '../containers/layout.vue';
 
 import UserMs from '@/containers/userMs/userMs'
 import UserMsDetails from '@/containers/userMs/userMsDetails'
+
 import PhoneCard from '@/containers/phoneCard/phoneCard'
 import NewPhoneCard from '@/containers/phoneCard/NewPhoneCard'
 import PhoneCardDetails from '@/containers/phoneCard/phoneCardDetails'
@@ -41,11 +42,16 @@ export default new Router({
             	
                 {path: "/userMs", name: "用户管理", component: UserMs},
                 {path: "/userMsDetails", name: "详情", component: UserMsDetails},
-//              
-                {path: "/phoneCard", name: "北京通手机卡", component: PhoneCard},
-                {path: "/PhoneCardDetails", name: "详情", component: PhoneCardDetails},
-                {path: '/PhoneCardEdit', name: '编辑', component: PhoneCardEdit},
-//              
+
+                {path: "/phoneCard", name: "商品管理", component: PhoneCard},
+                {path: "/PhoneCardDetails", name: "商品管理-新增", component: NewPhoneCard},
+                {path: '/PhoneCardEdit', name: '商品管理-编辑', component: PhoneCardEdit},
+				{path: "/PhoneCardDetails", name: "商品管理-详情", component: PhoneCardDetails},
+				
+				{path: "/phoneCardOrder", name: "订单管理", component: PhoneCardDetails},
+				{path: "/phoneCardDService", name: "服务描述", component: PhoneCardEdit},
+
+
 //              {path: '/newsMs', name: '咨询管理', component: Consulting},
 //              {path: '/newsMsDetails', name: '详情', component: ConsultingDetails},
 //              {path: '/newsMsEdit', name: '编辑', component: ConsultingEdit},

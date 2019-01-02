@@ -45,7 +45,17 @@ export default {
 					"icon": "fa fa-user",
 					"options": [{
 						"title": "北京通手机卡",
-						"path": "/phoneCard",
+						"path": "/phoneCardbjt",
+						"options": [{
+							"title": "服务描述",
+							"path": "/phoneCardDService",
+						},{
+							"title": "商品管理",
+							"path": "/phoneCard",
+						},{
+							"title": "订单管理",
+							"path": "/phoneCardOrder",
+						}]
 					}]
 				},
 				{
