@@ -10,6 +10,7 @@
 	 			</ul>
 	 		</div>
 	 	</div>
+	 	<hr />
 	 	<div class="detail-inner">
 	 		<div class="detail-title">常用收获信息</div>
 	 		<div class="detail-container"> 
@@ -100,7 +101,7 @@
 	font-weight: 600;
 }
 .detail-container{}
-.detail-container .detail-ul{margin: 0;padding: 0;list-style: none;border-bottom: 1px solid #E8E8E8;height: 100px;}
+.detail-container .detail-ul{margin: 0;padding: 0;list-style: none;height: 100px;}
 .detail-container .detail-ul li{float: left;width: 33%;margin-bottom: 15px;}
 .detail-container .detail-ul li span{
 	font-size: 14px;

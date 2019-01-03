@@ -25,10 +25,12 @@ import UserMs from '@/containers/userMs/userMs'
 import UserMsDetails from '@/containers/userMs/userMsDetails'
 
 import PhoneCard from '@/containers/phoneCard/phoneCard'
-import NewPhoneCard from '@/containers/phoneCard/NewPhoneCard'
-import PhoneCardDetails from '@/containers/phoneCard/phoneCardDetails'
 import PhoneCardEdit from '@/containers/phoneCard/PhoneCardEdit'
-//
+import PhoneCardDetails from '@/containers/phoneCard/phoneCardDetails'
+import PhoneCardOrder from '@/containers/phoneCard/phoneCardOrder'
+import PhoneCardOrderEdit from '@/containers/phoneCard/phoneCardOrderEdit'
+import PhoneCardOrderDetails from '@/containers/phoneCard/phoneCardOrderDetails'
+
 //import Consulting from '@/containers/consulting/Consulting'
 //import ConsultingDetails from '@/containers/consulting/ConsultingDetails'
 //import ConsultingEdit from '@/containers/consulting/ConsultingEdit'
@@ -42,14 +44,13 @@ export default new Router({
             	
                 {path: "/userMs", name: "用户管理", component: UserMs},
                 {path: "/userMsDetails", name: "详情", component: UserMsDetails},
-
-                {path: "/phoneCard", name: "商品管理", component: PhoneCard},
-                {path: "/PhoneCardDetails", name: "商品管理-新增", component: NewPhoneCard},
-                {path: '/PhoneCardEdit', name: '商品管理-编辑', component: PhoneCardEdit},
-				{path: "/PhoneCardDetails", name: "商品管理-详情", component: PhoneCardDetails},
-				
-				{path: "/phoneCardOrder", name: "订单管理", component: PhoneCardDetails},
 				{path: "/phoneCardDService", name: "服务描述", component: PhoneCardEdit},
+                {path: "/phoneCard", name: "商品管理", component: PhoneCard},
+                {path: '/PhoneCardEdit', name: '商品管理-新增或编辑', component: PhoneCardEdit},
+				{path: "/PhoneCardDetails", name: "商品管理-详情", component: PhoneCardDetails},
+				{path: "/phoneCardOrder", name: "订单管理", component: PhoneCardOrder},
+				{path: "/phoneCardOrderEdit", name: "订单管理-新增", component: PhoneCardOrderEdit},
+				{path: "/phoneCardOrderDetails", name: "订单管理-详情", component: PhoneCardOrderDetails},
 
 
 //              {path: '/newsMs', name: '咨询管理', component: Consulting},

@@ -6,8 +6,7 @@
 		@onOprationClick='onOprationClick' 
 		@onChange='onChange' 
 		@onSerachOprationClick='onSerachOprationClick' />
-	
-{{phoneCardList}}</div>
+ 	</div>
 </template>
 
 <script>
@@ -66,8 +65,13 @@
 				console.log('分页数据:', paginationData)
 				this.data.tableGroup.tData = tableData // 模拟查询
 			},
-			onSerachOprationClick(searchData, type) {
-				console.log('查询结果：', searchData, '哪个按钮：', type)
+			onSerachOprationClick(type) {
+//				this.$store.dispatch(type);
+				this.$router.push({
+					path: `${this.$route.path}Edit`,
+				})
+				console.log('查询结果：','哪个按钮：', type)
+				
 			}
 		}
 

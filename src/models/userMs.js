@@ -82,8 +82,8 @@ export default {
 						actions: [{
 								key: 'detail', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
 								name: '详情', // 操作按钮名字
-								size: 'mini', // 可选 用于按钮大小
-								type: 'primary', // 可选 按钮类型
+								size: 'small', // 可选 用于按钮大小
+								type: 'text', // 可选 按钮类型
 						},{
 							key: "freeze",
 							name: "正常",

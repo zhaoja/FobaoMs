@@ -60,8 +60,7 @@
 		      :width = "seachTableDate.tableGroup.Opration.width" v-if = "seachTableDate.tableGroup.Opration">
 		      <template slot-scope="scope">
 		      	<el-switch v-if="action.name2" v-for="action in seachTableDate.tableGroup.Opration.actions" v-model="scope.row.freeze" @change="changeSwitch(scope.row,action.key)" :key = "action.name"
-		      		 :active-text="action.name2" :inactive-text="action.name" 
-		      		  active-color="#ff4949"  inactive-color="#ccc"
+		      		 :active-text="action.name2" :inactive-text="action.name" active-color="#ff4949"  inactive-color="#ccc"
 		      		 ></el-switch>
 		        <el-button v-if="!action.name2" v-for = "action in seachTableDate.tableGroup.Opration.actions" :key = "action.name" @click = "handleOprationClick(scope.row, action.key)" :type = "action.type" :size = "action.size">{{action.name}}</el-button>
 			  </template> 
@@ -183,7 +182,9 @@
 			 * @augments （String） type  当前点击的按钮类型  这个类型是有父组件提供tableGroup > opration > actions 中的key值 用来让父组件区分具体点击了哪个方法
 			 */
 			handleSerachOprationClick(type) {
-				this.$emit('onSerachOprationClick', this.searchData, type);
+				console.log(type,1111111)
+				this.$emit('onSerachOprationClick', type);
+//				this.$emit('onSerachOprationClick', this.searchData, type);
 			}  
        	}
     }
