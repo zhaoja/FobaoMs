@@ -40,7 +40,7 @@ state2: '待制卡',
 	freeze: true
 }]
 import seachTable from '@/utils/seachTable.js'
-
+import { Http } from '../server/index.js'
 export default {
    state: {
 		phoneCardMs:{
@@ -126,8 +126,22 @@ export default {
 						pageSize: 10
 					}
 				}
-									 
-			commit('phoneCardListSuccess', testData)
+// 			var params = {
+//				param: 111
+//			}
+   			Http({url:'/web/mobileCardAdmin/getMobileCards',data:{}})
+            .then(data => {
+              	if (data.code === 1) {
+              		console.log(data)
+//            		commit('phoneCardListSuccess', data.data)
+              	}else{
+              		console.log()
+              	}
+            }).catch(function (error) {
+			    console.log(error);
+		  	});	
+				
+						
         },	   		
 		
 		newPhoneCard(){
