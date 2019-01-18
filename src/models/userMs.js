@@ -36,7 +36,8 @@ var textdata = [{
 }];
 
 import seachTable from '@/utils/seachTable.js'
- 
+import { Http } from '../server/index.js'
+
 export default {
 	state: {
 		userMs:{
@@ -99,8 +100,20 @@ export default {
 				currentPage: 1,  
 				pageSize: 1
 			}
- 
-			commit('getUserListSuccess', dataFormat)
+ 			//例子
+// 			var params = {
+//				param: items
+//			}
+// 			Http({url: '/web/information/getcolumn', data:params})
+//          .then(data => {
+//            	if (data.code === 1) {
+					commit('getUserListSuccess', dataFormat)
+//            	}else{
+//            		console.log()
+//            	}
+//          }).catch(function (error) {
+//			    console.log(error);
+//		  	});	
 		},
 		//查看详情
 		getUserListDetails({ commit, state }, items) {
