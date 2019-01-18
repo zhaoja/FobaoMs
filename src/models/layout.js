@@ -61,7 +61,7 @@ export default {
 				{
 					"title": "资讯管理",
 					"path": "/newsMs",
-					"icon": "fa fa-user"
+					"icon": "fa fa-user",
 				},
 //				{
 //					"title": "业务管理",

@@ -31,6 +31,10 @@ import PhoneCardOrder from '@/containers/phoneCard/phoneCardOrder'
 import PhoneCardOrderEdit from '@/containers/phoneCard/phoneCardOrderEdit'
 import PhoneCardOrderDetails from '@/containers/phoneCard/phoneCardOrderDetails'
 
+import NewsMs from '@/containers/newsMs/newsMs'
+import NewsMsEdit from '@/containers/newsMs/newsMsEdit'
+import NewsMsDetails from '@/containers/newsMs/newsMsDetails'
+
 //import Consulting from '@/containers/consulting/Consulting'
 //import ConsultingDetails from '@/containers/consulting/ConsultingDetails'
 //import ConsultingEdit from '@/containers/consulting/ConsultingEdit'
@@ -51,13 +55,10 @@ export default new Router({
 				{path: "/phoneCardOrder", name: "订单管理", component: PhoneCardOrder},
 				{path: "/phoneCardOrderEdit", name: "订单管理-新增", component: PhoneCardOrderEdit},
 				{path: "/phoneCardOrderDetails", name: "订单管理-详情", component: PhoneCardOrderDetails},
-
-
-//              {path: '/newsMs', name: '咨询管理', component: Consulting},
-//              {path: '/newsMsDetails', name: '详情', component: ConsultingDetails},
-//              {path: '/newsMsEdit', name: '编辑', component: ConsultingEdit},
+                {path: '/newsMs', name: '咨询管理', component: NewsMs},
+                {path: '/newsMsEdit', name: '咨询管理-编辑', component: NewsMsEdit},
+                {path: '/newsMsDetails', name: '咨询管理-详情', component: NewsMsDetails},
 //              {path: '/phoneCardNew', name: '北京通手机卡', component: NewPhoneCard},
-                
 //              {path:"/businessMage",name:"业务管理",component:busManage},
 //              {path:"/govBusiness",name:"政府业务",component:govBusiness},
                 // {path:"/businessMage/govBusiness/mcardApply",name:"制卡申请",component:McardApply},

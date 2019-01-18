@@ -18,7 +18,7 @@
 						<el-input v-model="form.name"></el-input>
 					</el-form-item>
 				 	<el-form-item label="广告图：">
-						<el-input v-model="上传"></el-input>
+						<el-input v-model="form.name"></el-input>
 					</el-form-item>
 					<el-form-item label="商品介绍：">
 						<UEditor :config="config" ref="ueditor" ></UEditor>
