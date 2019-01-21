@@ -1,7 +1,7 @@
 import axios from 'axios'
 // 创建axios实例 application/x-www-data-urlencoded  application/json
 const service = axios.create({
-baseURL: 'http://fubaoapp.xfchkj.com',
+baseURL: 'http://fubaoapp.xfchkj.com:8080',
 //baseURL: 'http://192.168.0.35',
   timeout: 15000,
   headers: {'Content-Type': 'application/json'}

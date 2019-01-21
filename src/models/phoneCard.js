@@ -98,8 +98,8 @@ export default {
               		phoneCardListData.tableGroup.tData = data.data.values;
               		phoneCardListData.pagination ={
               			total: phoneCardListData.tableGroup.tData.length, // type = number
-						currentPage: 1, // type = number 当前第几页 
-						pageSize: phoneCardListData.tableGroup.tData.length
+										currentPage: 1, // type = number 当前第几页 
+										pageSize: phoneCardListData.tableGroup.tData.length
               		};
 	
 			 		commit("phoneCardListSuccess", phoneCardListData)
@@ -273,7 +273,7 @@ export default {
 		  	
         },	 
         getUserListDetails({commit, state},items){
-        	console.log(items)
+        //	console.log(items)
 //	    	commit('getUserListDetailsSuccess', data)
         }
         
@@ -281,7 +281,7 @@ export default {
     },
     mutations: {
         phoneCardListSuccess(state, data) {
-  				console.log(data)
+  				//console.log(data)
 	
          state.phoneCardMs.phoneCardData = data;
 //          console.log(state, data)
@@ -289,7 +289,7 @@ export default {
         getUserListDetailsSuccess(state, data) {
   
             state.details = data;
-            console.log(state, data)
+           // console.log(state, data)
         } ,
         phoneCardOrderListSuccess(state, data){
         	state.phoneCardMs.phoneCardOrderData = data;

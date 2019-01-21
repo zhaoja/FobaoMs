@@ -2,20 +2,20 @@
 	<div class="phoneDetail">
 		<div class="edit1" v-if="editor==1">
 			<h4>服务描述：</h4>
-			<UEditor :config="config1" ref="ueditor"></UEditor>
+			<UEditor :config="config1" ref="ueditor" id = "ue1"></UEditor>
 		</div>
 		<div class="edit2" v-if="editor==2">
 			<h4>新增和編輯商品：</h4>
 			<div class="detail-container">
-				<el-form ref="form" label-width="180px">
+				<el-form ref="phoneCardForm" label-width="180px">
 					<el-form-item label="商品名称：">
-						<el-input v-model="form.commoName"></el-input>
+						<el-input v-model="phoneCardForm.commoName"></el-input>
 					</el-form-item>
 					<el-form-item label="价格（元）：">
-						<el-input v-model="form.price"></el-input>
+						<el-input v-model="phoneCardForm.price"></el-input>
 					</el-form-item>
 					<el-form-item label="总量（件）：">
-						<el-input v-model="form.total"></el-input>
+						<el-input v-model="phoneCardForm.total"></el-input>
 					</el-form-item>
 					<el-form-item label="广告图：">
 						<el-upload class="upload-demo" action="http://192.168.0.35/file/uploads" 
@@ -30,7 +30,7 @@
 
 					</el-form-item>
 					<el-form-item label="商品介绍：">
-						<UEditor :config="config" ref="ueditor" ></UEditor>
+						<UEditor :config="config" ref="ueditor" id = "ue2"></UEditor>
 					</el-form-item>
 
 				</el-form>
@@ -54,8 +54,6 @@
 	import UEditor from '@/components/component/UEditor'
 	import { Http } from '@/server/index.js'
 
-	const Url = "http://192.168.0.35";
-
 	export default {
 		name: 'hello',
 		components: {
@@ -64,7 +62,7 @@
 		data() {
 			return {
 				//页面表单
-				form: {
+				phoneCardForm: {
 					commoName: '',
 					price: null,
 					total: null,
@@ -133,13 +131,13 @@
 				if(!this.$route.query.data){
 					 
 				}else{
-					this.form = this.$route.query.data;
+					this.phoneCardForm = this.$route.query.data;
 					var adPicString = this.$route.query.data.adver_pic.split(',');
 					var arry = []
 					adPicString.forEach(function(currentValue, index, arr) {
 						var obj = {
 							name: currentValue,
-							url: 'http://192.168.0.35' + currentValue
+							url: currentValue
 						}
 						arry.push(obj)
 					})
@@ -175,18 +173,18 @@
 //		        alert(content);
 //			},
 			onSubmit() {
-		        let content = this.$refs.ueditor.getUEContent();
-		        this.form.contents = content
+					let content = this.$refs.ueditor.getUEContent();
+					// this.phoneCardForm.contents = content
 //		        console.log(this.$refs.ueditor.getUEContent())
 //       		$content = htmlspecialchars(stripslashes(input('content','','trim')));
-	 			Http({url: Url+'/web/mobileCardAdmin/editMobileCard',data:{
+	 			Http({url:'/web/mobileCardAdmin/editMobileCard',data:{
 	 				"param": {
-					    "commoName": this.form.commoName,
+					    "commoName": this.phoneCardForm.commoName,
 					    "id": 0,
-					    "picture": parseFloat(this.form.adver_pic),
-					    "price": parseFloat(this.form.price),
-					    "product_desc": this.form.contents,
-					    "total": parseFloat(this.form.total)
+					    "picture": parseFloat(this.phoneCardForm.adver_pic),
+					    "price": parseFloat(this.phoneCardForm.price),
+					    "product_desc":content,
+					    "total": parseFloat(this.phoneCardForm.total)
 					  }
 	 			}})
 	          	.then(data => {

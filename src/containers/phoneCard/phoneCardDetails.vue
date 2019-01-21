@@ -14,7 +14,7 @@
 						{{form.total}}
 					</el-form-item>
 				 	<el-form-item label="广告图：">
-						<img :src="'http://192.168.0.35'+img" v-for="img in form.adver_pic"/>
+						<img :src="img" v-for="img in form.adver_pic" :key="img"/>
 					</el-form-item>
 					<el-form-item label="商品介绍：">
 						<div v-html="form.contents"></div>
