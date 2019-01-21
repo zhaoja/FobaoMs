@@ -58,6 +58,8 @@ export default new Router({
                 {path: '/newsMs', name: '咨询管理', component: NewsMs},
                 {path: '/newsMsEdit', name: '咨询管理-编辑', component: NewsMsEdit},
                 {path: '/newsMsDetails', name: '咨询管理-详情', component: NewsMsDetails},
+                
+                
 //              {path: '/phoneCardNew', name: '北京通手机卡', component: NewPhoneCard},
 //              {path:"/businessMage",name:"业务管理",component:busManage},
 //              {path:"/govBusiness",name:"政府业务",component:govBusiness},

@@ -1,44 +1,4 @@
-const TEXTDATA =  [{
-id: '32141',
-name: '王军',
-phone: '15010971578',
-idcard: '130221167008273849',
-state1: '2011-05-05',
-state2: '2011-05-05',
-	freeze: false
-}, {
-	id: '321411',
-name: '王军',
-phone: '15010971578',
-idcard: '130221167008273849',
-state1: '2011-05-05',
-state2: '2011-05-05',
-	freeze: true
-}, {
-	id: '321412',
-name: '王军',
-phone: '15010971578',
-idcard: '130221167008273849',
-state1: '2011-05-05',
-state2: '2011-05-05',
-	freeze: false
-}, {
-	id: '321413',
-name: '王军',
-phone: '15010971578',
-idcard: '130221167008273849',
-state1: '审核中',
-state2: '待制卡',
-	freeze: true
-}, {
-	id: '321414',
-name: '王军',
-phone: '15010971578',
-idcard: '130221167008273849',
-state1: '审核中',
-state2: '待制卡',
-	freeze: true
-}]
+const TEXTDATA =  []
 import seachTable from '@/utils/seachTable.js'
 import { Http } from '../server/index.js'
 export default {
@@ -50,106 +10,114 @@ export default {
 		}
 	},
     actions: {
+    	//商品列表
         phoneCardList({commit, state},items){
-			let testData = {
-					searchGroup: {
-						rowNum: 3,
-						labelWidth: '100px', // 总体的labelWidth 可以单独为每一项设置
-						searchBtnHidden: true, // 可选值 
-						clearBtnHidden: true, // 可选值 是否显示按钮
+			let phoneCardListData = {
+				searchGroup: {
+					rowNum: 3,
+					labelWidth: '100px', // 总体的labelWidth 可以单独为每一项设置
+					searchBtnHidden: true, // 可选值 
+					clearBtnHidden: true, // 可选值 是否显示按钮
+					actions: [
+						{
+							key: 'newPhoneCard', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
+							name: '新增', // 操作按钮名字
+							type: 'primary', // 可选 按钮类型
+						}
+					]
+				},
+				tableGroup: {
+					tHeadData: [{
+							prop: "commoName",
+							name: '商品名称',
+							width: "150"
+						}, // width 可选 可以不写
+						{
+							prop: "price",
+							name: '价格（元）',
+							width: "150"
+						},
+						{
+							prop: "total",
+							name: '总量（件）'
+						},
+						{
+							prop: "sales",
+							name: '销售量（件）'
+						},
+						{
+							prop: "ramaining",
+							name: '剩余（件）'
+						},
+						{
+							prop: "on_time",
+							name: '上架时间'
+						},
+						
+						{
+							prop: "off_time",
+							name: '下架时间'
+						},
+					],
+					tData:TEXTDATA,
+					Opration: { // 可选 没有的话 不显示操作列表
+						oprationName: '操作中', // 可选  默认叫操作
+						fixed: 'right', // 可选 默认是 right
+						width: '250', // 可选 默认 自适应
+						
 						actions: [
 							{
-								key: 'newPhoneCard', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
-								name: '新增', // 操作按钮名字
-								type: 'primary', // 可选 按钮类型
-							}
-						]
-					},
-					tableGroup: {
-						tHeadData: [{
-								prop: "name",
-								name: '商品名称',
-								width: "150"
-							}, // width 可选 可以不写
-							{
-								prop: "phone",
-								name: '价格（元）',
-								width: "150"
+								key: "updown",
+								name: "上架",
+								name2: "下架",
 							},
 							{
-								prop: "idcard",
-								name: '总量（件）'
+								key: 'edit', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
+								name: '编辑', // 操作按钮名字
+								size: 'small', // 可选 用于按钮大小
+								type: 'text', // 可选 按钮类型
+							},{
+								key: 'detail', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
+								name: '详情', // 操作按钮名字
+								size: 'small', // 可选 用于按钮大小
+								type: 'text', // 可选 按钮类型
 							},
-							{
-								prop: "state1",
-								name: '销售量（件）'
-							},
-							{
-								prop: "state2",
-								name: '剩余（件）'
-							},
-							{
-								prop: "state2",
-								name: '上架时间'
-							},
-						],
-						tData:TEXTDATA,
-						Opration: { // 可选 没有的话 不显示操作列表
-							oprationName: '操作中', // 可选  默认叫操作
-							fixed: 'right', // 可选 默认是 right
-							width: '250', // 可选 默认 自适应
 							
-							actions: [
-								{
-									key: "updown",
-									name: "上架",
-									name2: "下架",
-								},
-								{
-									key: 'edit', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
-									name: '编辑', // 操作按钮名字
-									size: 'small', // 可选 用于按钮大小
-									type: 'text', // 可选 按钮类型
-								},{
-									key: 'detail', // 可选(如果用多个方法时，必填 不然无法区分点击了哪个方法) 用于回传确定点击的是那个方法
-									name: '详情', // 操作按钮名字
-									size: 'small', // 可选 用于按钮大小
-									type: 'text', // 可选 按钮类型
-								},
-								
-							]
-						}
-					},
-					pagination: {
-						total: 100, // type = number
-						currentPage: 1, // type = number 当前第几页 
-						pageSize: 10
+						]
 					}
+				},
+				pagination: {
+					total: 100, // type = number
+					currentPage: 1, // type = number 当前第几页 
+					pageSize: 10
 				}
-// 			var params = {
-//				param: 111
-//			}
-   			Http({url:'/web/mobileCardAdmin/getMobileCards',data:{}})
+			};
+			Http({url: '/web/mobileCardAdmin/getMobileCards', data: {}})
             .then(data => {
               	if (data.code === 1) {
-              		console.log(data)
-//            		commit('phoneCardListSuccess', data.data)
-              	}else{
-              		console.log()
+              		phoneCardListData.tableGroup.tData = data.data.values;
+              		phoneCardListData.pagination ={
+              			total: phoneCardListData.tableGroup.tData.length, // type = number
+						currentPage: 1, // type = number 当前第几页 
+						pageSize: phoneCardListData.tableGroup.tData.length
+              		};
+	
+			 		commit("phoneCardListSuccess", phoneCardListData)
+              	}
+              	else{
+              		console.log(data.desc)
               	}
             }).catch(function (error) {
 			    console.log(error);
-		  	});	
-				
-						
-        },	   		
-		
+		  	});		
+        },	 	   		
+		/////////////////////////
 		newPhoneCard(){
 			alert(1)
 		},
-		
-		phoneCardOrderList({commit, state},items){
-			let testData = {
+		//订单列表
+		phoneCardOrderList({commit, state},item){
+			let phoneCardOrderListData = {
 					searchGroup: {
 						rowNum: 3,
 						labelWidth: '100px', // 总体的labelWidth 可以单独为每一项设置
@@ -282,7 +250,27 @@ export default {
 						pageSize: 10
 					}
 				}
-			commit('phoneCardOrderListSuccess', testData)
+			
+			
+			Http({url: '/web/order/getOrders', data: item})
+            .then(data => {
+              	if (data.code === 1) {
+              		
+              		phoneCardOrderListData.tableGroup.tData = data.data.list;
+          		 	phoneCardOrderListData.pagination = {
+						total: data.data.data.pageData.totalCount, // type = number
+						currentPage: data.data.data.pageData.pageNo, // type = number 当前第几页 
+						pageSize: data.data.data.pageData.pageSize
+					};
+			 		commit("phoneCardOrderListSuccess", phoneCardOrderListData)
+              	}
+              	else{
+              		console.log(data.desc)
+              	}
+            }).catch(function (error) {
+			    console.log(error);
+		  	});	
+		  	
         },	 
         getUserListDetails({commit, state},items){
         	console.log(items)
@@ -304,7 +292,6 @@ export default {
             console.log(state, data)
         } ,
         phoneCardOrderListSuccess(state, data){
-        	console.log()
         	state.phoneCardMs.phoneCardOrderData = data;
         }
     }

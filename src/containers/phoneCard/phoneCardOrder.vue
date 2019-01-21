@@ -31,7 +31,12 @@
 		},
 		 
 		created() {
-			 this.$store.dispatch('phoneCardOrderList');
+			this.$store.dispatch('phoneCardOrderList',{
+				 "param": {
+				    "pageNo": 1,
+				    "pageSize": 15,
+				  }
+			});
 		},
 		methods: {
 			onSearch(searchData) {
@@ -63,7 +68,15 @@
 			},
 			onChange(paginationData) {
 				console.log('分页数据:', paginationData)
-				this.data.tableGroup.tData = tableData // 模拟查询
+//				{"": undefined, currentPage: 1, pageSize: 50}
+				this.$store.dispatch('phoneCardOrderList',{
+				 "param": {
+				    "pageNo": paginationData.currentPage,
+				    "pageSize": paginationData.pageSize,
+				  }
+			});
+				
+//				this.data.tableGroup.tData = tableData // 模拟查询
 			},
 			onSerachOprationClick(type) {
 //				this.$store.dispatch(type);

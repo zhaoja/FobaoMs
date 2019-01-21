@@ -43,21 +43,21 @@
 				}
 			},
 			onOprationClick(data, type) {
+//				console.log(data,type,5555)
 				if(type === 'detail') {
-					var params = {
-						id: data.idcard
-					}
+					
 					this.$router.push({
 						path: `${this.$route.path}Details`,
-						query: params
+						query: {
+							data:data
+						}
 					})
 				} else if(type === 'edit') {
-					var params = {
-						id: data.idcard
-					}
 					this.$router.push({
 						path: `${this.$route.path}Edit`,
-						query: params
+						query: {
+							data:data
+						}
 					})
 				}
 			},
@@ -67,9 +67,12 @@
 			},
 			onSerachOprationClick(type) {
 //				this.$store.dispatch(type);
-				this.$router.push({
-					path: `${this.$route.path}Edit`,
-				})
+				if(type=='newPhoneCard'){
+					this.$router.push({
+						path: `${this.$route.path}Edit`,
+					})
+				}
+				
 				console.log('查询结果：','哪个按钮：', type)
 				
 			}

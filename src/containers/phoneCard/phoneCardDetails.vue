@@ -1,24 +1,23 @@
 <template>
 	<div class="phoneDetail">
-		 
 		<div class="edit2" >
 			<h4>商品詳情：</h4>
 			<div class="detail-container">
 				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="商品名称：">
-						{{form.name}}
+						{{form.commoName}}
 					</el-form-item>
 					<el-form-item label="价格（元）：">
-						{{form.name}}
+						{{form.price}}
 					</el-form-item>
 					<el-form-item label="总量（件）：">
-						{{form.name}}
+						{{form.total}}
 					</el-form-item>
 				 	<el-form-item label="广告图：">
-						{{form.name}}
+						<img :src="'http://192.168.0.35'+img" v-for="img in form.adver_pic"/>
 					</el-form-item>
 					<el-form-item label="商品介绍：">
-						{{form.name}}
+						<div v-html="form.contents"></div>
 					</el-form-item>
 	
 				</el-form>
@@ -35,15 +34,20 @@
       name: 'hello',
        data(){
         return {
-         
-          	//新增页面表单
+          	//页面表单
           	form: {
-				name: '去222121',
+				commoName: '',
+				price:null,
+				total:null,
+				adver_pic:[],
+				contents:'',
 			}
         }
       },
       mounted(){
-      	  
+      	  	this.form = this.$route.query.data;
+      	  	var adPicString = this.$route.query.data.adver_pic.split(',');
+      	  	this.form.adver_pic = adPicString;
       },
       methods: {
          
